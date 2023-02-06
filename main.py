@@ -1,38 +1,19 @@
-from flask import Flask, request
+from flask import Flask, render_template, redirect, url_for
 
 app = Flask(__name__)
 
 
 @app.route('/', methods=['GET'])
-def get():
-    print('Zaprimljen GET zahtjev')
-    return('Poslali ste GET zahtjev')
+def index():
+    return render_template('index.html')
 
 
 @app.route('/', methods=['POST'])
 def post():
-    print('Zaprimljen POST zahtjev')
-    return ('Poslali ste POST zahtjev')
 
-
-@app.route('/', methods=['PUT'])
-def put():
-    print('Zaprimljen PUT zahtjev')
-    return ('Poslali ste PUT zahtjev')
-
-
-@app.route('/zajednicka', methods=['POST', 'GET', 'PUT'])
-def zajednicka():
-    if request.method == 'GET':
-        print('Zaprimljen GET zahtjev')
-        return ('Poslali ste GET zahtjev')
-    if request.method == 'POST':
-        print('Zaprimljen POST zahtjev')
-        return ('Poslali ste POST zahtjev')
-    if request.method == 'PUT':
-        print('Zaprimljen PUT zahtjev')
-        return ('Poslali ste PUT zahtjev')
+    print('test')
+    return redirect(url_for('index')), 303
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+    app.run(port="80", host="0.0.0.0")

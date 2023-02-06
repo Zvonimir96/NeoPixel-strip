@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta meta name="viewport" content=
+            "width=device-width, user-scalable=no" />
+    <meta charset="UTF-8" />
+    <title>Color wheel</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <script src="{{url_for('static', filename='script.js')}}"></script>
+  </head>
+  <body
+    style="
+      background-color: #f8f8f8;
+      font-family: Roboto, Sans-serif;
+      text-align: center;
+      overscroll-behavior: contain;
+    "
+  >
+    <h1>Color wheel</h1>
+    <canvas
+      id="canvas"
+      width="1024"
+      height="800"
+      style="
+        width: calc(100% - 6px);
+        max-width: 1024px;
+        max-height: 800px;
+        background-color: #fefefe;
+        border-radius: 25px;
+        box-shadow: 3px 3px 6px #888888;
+      "
+    ></canvas>
+
+    <script src="{{url_for('static', filename='main.js')}}"></script>
+  </body>
+</html>
