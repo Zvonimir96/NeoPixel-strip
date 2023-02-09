@@ -2,7 +2,7 @@ from flask import Flask, render_template, redirect, url_for, request
 import board
 import neopixel
 
-number_of_pixels = 59
+number_of_pixels = 60
 pixels = neopixel.NeoPixel(board.D18, number_of_pixels)
 
 app = Flask(__name__)
@@ -15,8 +15,7 @@ def index():
 
 @app.route('/turn_off', methods=['GET'])
 def turn_off():
-    for i in range(number_of_pixels):
-        pixels[i] = (0, 0, 0)
+    pixels.fill(0, 0, 0)
 
     return render_template('index2.html')
 
@@ -29,8 +28,7 @@ def turn_on():
 
 @app.route('/set_color', methods=['POST'])
 def set_color():
-    for i in range(number_of_pixels):
-        pixels[i] = (int(request.form['R']), int(request.form['G']), int(request.form['B']))
+    pixels.fill(int(request.form['R']), int(request.form['G']), int(request.form['B']))
 
     return render_template('index2.html')
 
