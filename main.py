@@ -15,7 +15,7 @@ def index():
         (h, s, v) = (float(request.form['H']) / 1000, float(request.form['S']) / 1000, float(request.form['V']) / 1000)
         (r, g, b) = colorsys.hsv_to_rgb(h, s, v)
 
-        pixels.fill(int(r*255), int(g*255), int(b*255))
+        pixels.fill((int(r*255), int(g*255), int(b*255)))
 
     return render_template('index2.html')
 
