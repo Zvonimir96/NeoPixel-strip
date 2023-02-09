@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request
 import board
 import neopixel
+import colorsys
 
 number_of_pixels = 60
 pixels = neopixel.NeoPixel(board.D18, number_of_pixels)
@@ -8,27 +9,20 @@ pixels = neopixel.NeoPixel(board.D18, number_of_pixels)
 app = Flask(__name__)
 
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
+    if request.method == 'POST':
+        (h, s, v) = (float(request.form['H']) / 1000, float(request.form['S']) / 1000, float(request.form['V']) / 1000)
+        (r, g, b) = colorsys.hsv_to_rgb(h, s, v)
+
+        pixels.fill(r, g, b)
+
     return render_template('index2.html')
 
 
 @app.route('/turn_off', methods=['GET'])
 def turn_off():
     pixels.fill(0, 0, 0)
-
-    return render_template('index2.html')
-
-
-@app.route('/turn_on', methods=['GET'])
-def turn_on():
-    print('on')
-    return render_template('index2.html')
-
-
-@app.route('/set_color', methods=['POST'])
-def set_color():
-    pixels.fill(int(request.form['R']), int(request.form['G']), int(request.form['B']))
 
     return render_template('index2.html')
 

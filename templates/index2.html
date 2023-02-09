@@ -8,13 +8,10 @@
     <form action="/turn_off">
         <button>Turn off</button>
     </form>
-    <form action="/turn_on">
-        <button>Turn on</button>
-    </form>
-    <form action="/set_color" method="POST">
-        <input type="text" name="R" value="0">
-        <input type="text" name="G" value="0">
-        <input type="text" name="B" value="0">
+    <form action="/" method="POST">
+        <input type="range" name="H" min="0" max="1000">
+        <input type="range" name="S" min="0" max="1000">
+        <input type="range" name="V" min="0" max="1000">
         <button>Submit</button>
     </form>
 </body>
