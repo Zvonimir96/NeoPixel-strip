@@ -1,6 +1,8 @@
 const WIDTH = 1024;
 const HEIGHT = 800;
+
 const SCALE = 3.5;
+const CIRCLE_SIZE = 3.5;
 const MIDDLE_X = WIDTH / 2;
 const MIDDLE_Y = HEIGHT / 2;
 
@@ -13,18 +15,27 @@ function setContext(context) {
 }
 
 function drawColorWheel() {
-  if (!ctx)
-    throw new Error("Context not found, please call setContext().");
+    if (!ctx)
+        throw new Error("Context not found, please call setContext().");
+
+    let width = WIDTH;
+    let height = HEIGHT;
+
+    if (window.innerWidth <= WIDTH)
+        width = window.innerWidth;
+
+    if (window.innerHeight <= HEIGHT)
+        height = window.innerHeight;
 
   for (let h = 0; h <= 360; h++) {
     for (let s = 0; s <= 100; s++) {
       ctx.beginPath();
       ctx.fillStyle = `hsl(${h}, ${s}%, ${LIGHTNESS * 100}%)`;
 
-      const posX = MIDDLE_X + Math.cos(degreeToRadian(h)) * s * SCALE;
-      const posY = MIDDLE_Y - Math.sin(degreeToRadian(h)) * s * SCALE;
+      const posX = MIDDLE_X + Math.cos(degreeToRadian(h)) * s * CIRCLE_SIZE;
+      const posY = MIDDLE_Y - Math.sin(degreeToRadian(h)) * s * CIRCLE_SIZE;
 
-      ctx.arc(posX, posY, (SCALE * s) / 100 + 1.5, 0, 2 * Math.PI);
+      ctx.arc(posX, posY, (CIRCLE_SIZE * s) / 100 + 1.5, 0, 2 * Math.PI);
       ctx.fill();
     }
   }
@@ -33,50 +44,32 @@ function drawColorWheel() {
 }
 
 function drawColorWheelBorder() {
-  ctx.beginPath();
+    ctx.beginPath();
 
-  ctx.strokeStyle = "#fefefe";
-  ctx.lineWidth = 10;
+    let width = WIDTH;
+    let height = HEIGHT;
 
-  ctx.arc(MIDDLE_X, MIDDLE_Y, 100 * SCALE + 5, 0, 2 * Math.PI);
-  ctx.stroke();
-}
+    if (window.innerWidth <= WIDTH)
+        width = window.innerWidth;
 
-function drawInstructions() {
-  if (!ctx)
-    throw new Error("Context not found, please call setContext().");
+    if (window.innerHeight <= HEIGHT)
+        height = window.innerHeight;
 
-  ctx.fillStyle = "black";
-  ctx.font = "26px Roboto";
-  const instructions =
-    "Hover over any color or tap anywhere on the wheel";
-  const textWidth = ctx.measureText(instructions).width;
-  ctx.fillText(
-    instructions,
-    MIDDLE_X - Math.floor(textWidth / 2),
-    HEIGHT - 15
-  );
-}
+    ctx.strokeStyle = "#fefefe";
+    ctx.lineWidth = 10;
 
-function drawMousePosition(x, y) {
-  if (!ctx)
-    throw new Error("Context not found, please call setContext().");
-
-  ctx.clearRect(WIDTH - 105, 0, WIDTH, 40);
-  ctx.fillStyle = "black";
-  ctx.font = "14px Roboto";
-  ctx.fillText(`X: ${x}, Y: ${y}`, WIDTH - 100, 25);
+    ctx.arc(width/2, height/2, 100 * CIRCLE_SIZE + 5, 0, 2 * Math.PI);
+    ctx.stroke();
 }
 
 function drawPickedColor(x, y) {
   if (!ctx)
     throw new Error("Context not found, please call setContext().");
 
-  ctx.clearRect(10, 10, 200, 210);
-  const color = getColorForPoint(x, y);
-  ctx.fillStyle = `hsl(${color.h}, ${color.s * 100}%, ${color.l * 100}%)`;
-  ctx.fillRect(10, 10, 200, 160);
-  drawColorDetails(color);
+  //ctx.clearRect(10, 10, 200, 210);
+  //const color = getColorForPoint(x, y);
+  //ctx.fillStyle = `hsl(${color.h}, ${color.s * 100}%, ${color.l * 100}%)`;
+  //ctx.fillRect(10, 10, 200, 160);
 }
 
 function getColorForPoint(x, y) {
@@ -85,37 +78,16 @@ function getColorForPoint(x, y) {
   if (dist > 100 * SCALE) return { h: 0, s: 0, l: 1 };
 
   const s = dist / SCALE;
-  let h = radianToDegree(Math.acos((x - MIDDLE_X) / s / SCALE));
-  if (y > MIDDLE_Y) h = 360 - h;
+  let h = radianToDegree(Math.acos((x - screen.width/2) / s / SCALE));
+  if (y > screen.height/2) h = 360 - h;
   return { h, s: s / 100, l: LIGHTNESS };
 }
 
-function drawColorDetails(color) {
-  ctx.fillStyle = "black";
-  ctx.font = "14px Roboto";
-  ctx.fillText(
-    `H: ${Math.floor(color.h)}, S: ${Math.floor(color.s * 100)}%, L: ${
-      color.l * 100
-    }%`,
-    15,
-    185
-  );
-  const rgb = hslToRgb(color);
-  ctx.fillText(
-    `R: ${Math.floor(rgb.r)}, G: ${Math.floor(rgb.g)}, B: ${Math.floor(
-      rgb.b
-    )}`,
-    15,
-    200
-  );
-  ctx.fillText(`#${rgbToHex(rgb)}`, 15, 215);
-}
-
 function getDistanceFromCenter(x, y) {
-  const offsetX = Math.abs(MIDDLE_X - x);
-  const offsetY = Math.abs(MIDDLE_Y - y);
+    const offsetX = Math.abs(window.innerWidth - x);
+    const offsetY = Math.abs(window.innerHeight - y);
 
-  return Math.sqrt(Math.pow(offsetX, 2) + Math.pow(offsetY, 2));
+    return Math.sqrt(Math.pow(offsetX, 2) + Math.pow(offsetY, 2));
 }
 
 function hslToRgb({ h, s, l }) {
@@ -153,12 +125,7 @@ function sendData(x, y){
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "http://192.168.86.211:80");
 
-    let data = `{
-      "Id": 78912,
-      "Customer": "Jason Sweet",
-      "Quantity": 1,
-      "Price": 18.00
-    }`;
+    let pos = window.innerWidth
 
-    xhr.send(data);
+    xhr.send(pos);
 }

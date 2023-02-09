@@ -4,15 +4,12 @@ window.onload = () => {
     setContext(ctx);
 
     drawColorWheel();
-    drawInstructions();
 
     canvas.addEventListener("mousemove", (event) => {
-      drawMousePosition(event.offsetX, event.offsetY);
       drawPickedColor(event.offsetX, event.offsetY);
     });
 
     addEventListener('touchmove', (event) => {
-        drawMousePosition(event.touches[0].clientX, event.touches[0].clientY);
         drawPickedColor(event.touches[0].clientX, event.touches[0].clientY);
     });
 
