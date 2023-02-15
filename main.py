@@ -22,7 +22,7 @@ def index():
 
 @app.route('/turn_off', methods=['GET'])
 def turn_off():
-    pixels.fill(0, 0, 0)
+    pixels.fill((0, 0, 0))
 
     return render_template('index2.html')
 
