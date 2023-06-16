@@ -14,7 +14,7 @@ def index():
     if request.method == 'POST':
         content = request.json
 
-        (r, g, b) = colorsys.hsv_to_rgb(content.get('h'), content.get('s'), 0.5)
+        (r, g, b) = colorsys.hls_to_rgb(content.get('h')/360, 0.5, content.get('s'))
 
         pixels.fill((int(r*255), int(g*255), int(b*255)))
 
