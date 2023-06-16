@@ -101,7 +101,8 @@ function radianToDegree(rad) {
 
 function sendData(x, y){
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://127.0.0.1:80");
+    xhr.open("POST", "http://192.168.0.110:80");
+    //xhr.open("POST", "http://127.0.0.1:80");
     xhr.setRequestHeader("Content-Type", "application/json");
     color = getColorForPoint(x, y)
 

@@ -25,7 +25,7 @@ def index():
 def turn_off():
     pixels.fill((0, 0, 0))
 
-    return 200
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
