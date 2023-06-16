@@ -6,7 +6,7 @@ window.onload = () => {
     drawColorWheel();
 
     canvas.addEventListener("mousemove", (event) => {
-      drawPickedColor(event.offsetX, event.offsetY);
+        drawPickedColor(event.offsetX, event.offsetY);
     });
 
     addEventListener('touchmove', (event) => {
@@ -14,6 +14,6 @@ window.onload = () => {
     });
 
     canvas.addEventListener("click", (event) => {
-      sendData(event.offsetX, event.offsetY);
+        sendData(event.offsetX, event.offsetY);
     });
 };
