@@ -9,29 +9,48 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
       rel="stylesheet"
     />
+    <style>
+      button{
+        padding: 5px;
+        padding-left: 20px;
+        padding-right: 20px;
+        font-family: Roboto, Sans-serif;
+        font-size: 20px;
+        border-radius: 10px;
+        background-color: {{color}};
+        border: none;
+        radius: 2px;
+
+        {% if color != '#FFFFFF' %}
+          color: white;
+        {% else %}
+          color: black;
+        {% endif %}
+      }
+
+      body{
+        background-color: white;
+        text-align: center;
+        overscroll-behavior: contain;
+        margin: 0;
+      }
+
+      canvas{
+        width: calc(100% - 6px);
+        max-width: 1024px;
+        max-height: 800px;
+      }
+    </style>
     <script src="{{url_for('static', filename='script.js')}}"></script>
   </head>
-  <body
-    style="
-      background-color: white;
-      font-family: Roboto, Sans-serif;
-      text-align: center;
-      overscroll-behavior: contain;
-      margin: 0;
-    "
-  >
+  <body>
     <canvas
       id="canvas"
       width="1024"
       height="800"
-      style="
-        width: calc(100% - 6px);
-        max-width: 1024px;
-        max-height: 800px;
-      "
     ></canvas>
 
-    <form action="/turn_off">
+    <form action="/turn_off" method="POST">
         <button>Turn off</button>
     </form>
 

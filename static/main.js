@@ -13,6 +13,10 @@ window.onload = () => {
         drawPickedColor(event.touches[0].clientX, event.touches[0].clientY);
     });
 
+    addEventListener('touchend', (event) => {
+        sendData(event.touches[0].clientX, event.touches[0].clientY);
+    });
+
     canvas.addEventListener("click", (event) => {
         sendData(event.offsetX, event.offsetY);
     });

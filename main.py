@@ -8,24 +8,38 @@ pixels = neopixel.NeoPixel(board.D18, number_of_pixels)
 
 app = Flask(__name__)
 
+color = "#FFFFFF"
 
-@app.route('/', methods=['GET', 'POST'])
+
+@app.route('/', methods=['GET'])
 def index():
-    if request.method == 'POST':
-        content = request.json
-
-        (r, g, b) = colorsys.hls_to_rgb(content.get('h')/360, 0.5, content.get('s'))
-
-        pixels.fill((int(r*255), int(g*255), int(b*255)))
-
-    return render_template('index.html')
+    print(color)
+    return render_template('index.html', color=color)
 
 
-@app.route('/turn_off', methods=['GET'])
+@app.route('/color', methods=['POST'])
+def set_color():
+    content = request.json
+
+    (r, g, b) = colorsys.hls_to_rgb(content.get('h') / 360, 0.5, content.get('s'))
+
+    global color
+    # Color in HEX notation
+    color = '#{:02x}{:02x}{:02x}'.format(int(r * 255), int(g * 255), int(b * 255))
+
+    pixels.fill((int(r * 255), int(g * 255), int(b * 255)))
+
+    return redirect("/", code=302)
+
+
+@app.route('/turn_off', methods=['POST'])
 def turn_off():
+    global color
+    color = "#FFFFFF"
+
     pixels.fill((0, 0, 0))
 
-    return render_template('index.html')
+    return redirect("/", code=302)
 
 
 if __name__ == '__main__':
