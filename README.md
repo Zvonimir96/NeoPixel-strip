@@ -1,5 +1,4 @@
-# Neopixel with Raspberry pi
-
+# Remote neopixel contoll
 Jednostavna stranica za upravljanje neopixelima 
 Stranica se hosta uz pomoć flask biblioteke na rpi
 
