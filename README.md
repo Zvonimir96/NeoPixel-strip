@@ -3,7 +3,7 @@ Simple project for remote control of neopixel strip. The neopixels are wired to 
 
 # Web page
 User can preview a color by hovering over the desired color on the color wheel and select color with the mouse click. A preview of selected color is displayed in the upper left corner. When user selects a color, the background of the button is set to the chosen color. Clicking the button turns off the neopixel strip and sets the button background to white.
-The color wheel is downloaded from the [link](https://github.com/jbrems/color-wheel).
+The color wheel is downloaded, and redesigned from the [link](https://github.com/jbrems/color-wheel).
 Web page is hosted with Python using the Flask library.
 
 ![image](https://github.com/Zvonimir96/Rpi/assets/46999608/05c55ec9-d349-4975-ba99-a49d80379d00)
