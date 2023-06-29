@@ -3,17 +3,15 @@ Simple project for remote control of neopixel strip. The neopixels are wired to 
 
 # Web page
 User can preview a color by hovering over the desired color on the color wheel and select color with the mouse click. A preview of selected color is displayed in the upper left corner. When user selects a color, the background of the button is set to the chosen color. Clicking the button turns off the neopixel strip and sets the button background to white.
-The color wheel is downloaded from the link: https://github.com/jbrems/color-wheel.
-Web page is hosted in Python using the Flask library.
+The color wheel is downloaded from the [link](https://github.com/jbrems/color-wheel).
+Web page is hosted with Python using the Flask library.
 
 ![image](https://github.com/Zvonimir96/Rpi/assets/46999608/05c55ec9-d349-4975-ba99-a49d80379d00)
 
 # Setup raspberry pi
-Zbog jednostavnosti projekta za upravljanje neopixelima je odabran raspberry pi zero. Budući da rpi zero nema hmi sučelje može mu se isključivo pristupiti uz pomoć ssh linije za što je potrebno postaviti statičku ip adresu. Također statička ip adresa se mora i postaviti kako bi korisnik mogao pristupiti stranici koja je hostana na rpiu. Link za postavljanje statičke ip adrese se nalazi na liku.
-Nakon postavljanja statičke ip adrese potrebno je prebaciti programski 
+Since controlling the neopixel strips is fairly simple and requires a server to access the website, a Raspberry Pi Zero was chosen as the embedded device for this project. In order to access the website, it is necessary to set up a static IP address on the Raspberry. A static IP address is also required because the Raspberry Pi Zero does not support an HMI interface and the only way to set up the web server is to establish SSH communication between the Raspberry and PC. To set the static IP address, please refer to the [link](https://www.ionos.com/digitalguide/server/configuration/provide-raspberry-pi-with-a-static-ip-address/#:~:text=To%20assign%20an%20IP%20address,with%20the%20IPv4%20address%20192.168).
 
-U projektu se koristio rpi 0 preko SSH linije.
-Prvo je bilo potrebno omogućiti spajanje ssh linije i postavljanje statičke ip adrese.
+
 Zatim pullati kod s githuba i postaciti da se prilikom sturtapa pokreće python skripta.
 Osim toga potrebno je spojiti neopixele na rpi
 
