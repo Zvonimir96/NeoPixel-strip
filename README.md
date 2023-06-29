@@ -10,24 +10,23 @@ Web page is hosted with Python using the Flask library.
 # Setup raspberry pi
 Since controlling the NeoPixels is fairly simple and requires a server to access the website, a Raspberry Pi Zero was chosen as the embedded device for this project. To host a website on a Raspberry Pi, the following steps have to be performed:
 
-## Raspberry Pi Wiring
-
-
-I ostaviti link kako se kontrolira i preuzeti biblioteku.
+## Raspberry Pi wiring
+Since NeoPixels are controlled with serial communication, it is necessary to connect the Din pin of the NeoPixels to the GPIO18 pin of the Raspberry. By connecting the GND pin of the NeoPixel to the GND pin of the Raspberry, we ensure that they are at the same potential. For the NeoPixels to work, we need to provide an external power source.
 ![image](https://github.com/Zvonimir96/Rpi/assets/46999608/d4f1c759-6cee-41b1-867a-8320bf6b4cff)
-
 
 ## Set static ip
 In order to access the website, it is necessary to set up a static IP address on the Raspberry. A static IP address is also required because the Raspberry Pi Zero does not support an HMI interface and the only way to set up the web server is to establish SSH communication between the Raspberry and PC. To set the static IP address, please refer to the [link](https://www.ionos.com/digitalguide/server/configuration/provide-raspberry-pi-with-a-static-ip-address/#:~:text=To%20assign%20an%20IP%20address,with%20the%20IPv4%20address%20192.168).
 
-## Run flask app on startup
-Zatim pullati kod s githuba i postaciti da se prilikom sturtapa pokreće python skripta.
-Osim toga potrebno je spojiti neopixele na rpi
+## Instalation of required librarys
+Once the SSH connection is established, it is important to install the necessary libraries before downloading the code:
+- [Adafruit NeoPixel](https://gist.github.com/vsefer/461acab219755bea26744735fcdbca7f) for controlling NeoPixels
+- [Flask](https://pypi.org/project/Flask/) for hosting the web page
+
+## Hosting a server
+Now that everything is ready, the programming code can be downloaded from this repository. By running main.py as a Python script, the server is ready to change the color of NeoPixels. If we disconnect the Raspberry from the power supply, the script has to be executed again. To run the script automatically at startup, please follow the instructions [here](https://www.dexterindustries.com/howto/run-a-program-on-your-raspberry-pi-at-startup/).
 
 # Issues
-Mora se reloadati svakim setanjem boja zato što mi onda gumb ne radi kako želim
-Vjerojatno posotoji bolji način za crtanje color wheela
+- The representation of the color wheel needs a lot of computing power.
 
-# Upgread
-Dodati senzor temperature i monitorati temperaturu prustorije zapisvianejm u sqlite bazu podataka
-Nadograditi da se stranica hosta na rpi a da se neopixeli upravljaju uz pomoć espa.
+# Upgrades
+- Add a temperature sensor to monitor the room temperature.
