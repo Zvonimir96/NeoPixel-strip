@@ -1,5 +1,6 @@
 # About
 Simple project for remote control of NeoPixel strip (WS2811). The NeoPixels are wired to the Raspberry Pi, which runs a web page where user can select color to be displayed.
+![Uploading IMG_20230629_230706.jpg…]()
 
 # Web page
 User can preview a color by hovering over the desired location on the color wheel and select it by pressing the left mouse button. A preview of desired color is displayed in the upper left corner. When user selects a color, the background of the button is set to the chosen color to indicate that NeoPixels are active. Clicking the button turns off the NeoPixels and sets the button background to white. Web page also works on mobile devices.
