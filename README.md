@@ -1,19 +1,28 @@
 # About
 Simple project for remote control of NeoPixel strip (WS2811). The NeoPixels are wired to the Raspberry Pi, which runs a web page where user can select color to be displayed.
-![IMG_20230629_230706](https://github.com/Zvonimir96/Rpi/assets/46999608/e9c5e188-65e7-460b-985b-0b6765a30578)
+
+<p align="center">
+  <img src="https://github.com/Zvonimir96/Rpi/assets/46999608/7d9e555f-0bb0-40c3-95a6-bf2f5466db92" width="70%">
+</p>
 
 # Web page
 User can preview a color by hovering over the desired location on the color wheel and select it by pressing the left mouse button. A preview of desired color is displayed in the upper left corner. When user selects a color, the background of the button is set to the chosen color to indicate that NeoPixels are active. Clicking the button turns off the NeoPixels and sets the button background to white. Web page also works on mobile devices.
 The color wheel is downloaded, and redesigned from the [jbrems](https://github.com/jbrems/color-wheel).
 Web page is hosted with Python using the Flask library.
-![image](https://github.com/Zvonimir96/Rpi/assets/46999608/05c55ec9-d349-4975-ba99-a49d80379d00)
+
+<p align="center">
+  <img src="https://github.com/Zvonimir96/Rpi/assets/46999608/05c55ec9-d349-4975-ba99-a49d80379d00" width="70%">
+</p>
 
 # Setup raspberry pi
 Since controlling the NeoPixels is fairly simple and requires a server to access the website, a Raspberry Pi Zero was chosen as the embedded device for this project. To host a website on a Raspberry Pi, the following steps have to be performed:
 
 ## Raspberry Pi wiring
 Since NeoPixels are controlled with serial communication, it is necessary to connect the Din pin of the NeoPixels to the GPIO18 pin of the Raspberry. By connecting the GND pin of the NeoPixel to the GND pin of the Raspberry, we ensure that they are at the same potential. For the NeoPixels to work, we need to provide an external power source.
-![image](https://github.com/Zvonimir96/Rpi/assets/46999608/d4f1c759-6cee-41b1-867a-8320bf6b4cff)
+
+<p align="center">
+  <img src="https://github.com/Zvonimir96/Rpi/assets/46999608/d4f1c759-6cee-41b1-867a-8320bf6b4cff" width="70%">
+</p>
 
 ## Set static ip
 In order to access the website, it is necessary to set up a static IP address on the Raspberry. A static IP address is also required because the Raspberry Pi Zero does not support an HMI interface and the only way to set up the web server is to establish SSH communication between the Raspberry and PC. To set the static IP address, please refer to the [link](https://www.ionos.com/digitalguide/server/configuration/provide-raspberry-pi-with-a-static-ip-address/#:~:text=To%20assign%20an%20IP%20address,with%20the%20IPv4%20address%20192.168).
